@@ -1,0 +1,211 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pantalla principal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'style/style_bar_chart.css' %}">
+</head>
+<body>
+    <div class="container_main">
+        <div class="conteiner_background">
+            <header class="header__nav">
+                <div class="logo">
+                    <!-- <img src="logo">
+                    <a href="" class="header__logo">Project</a> -->
+                    
+                </div>
+                <nav class="nav" id="nav-menu">
+                    <ion-icon name="close-outline" class="header__close" id="close-menu"></ion-icon>
+                    <ul class="nav__list">
+                        <li class="nav__item"><a href="{% url 'index' %}" class="nav__link">Seguimiento</a></li>
+                        <li class="nav__item"><a href="rendimiento.html" class="nav__link">Rendimiento</a></li>
+                        <li class="nav__item"><a href="sign-up.html" class="nav__link">Usuario</a></li>
+                        <li class="nav__item"><a href="{% url 'log-out' %}" class="nav__link">Log Out</a></li>
+                    </ul>
+                </nav>
+
+                <div class="fondo__menu"><ion-icon name="menu-outline" class="header__toggle" id="toggle-menu"></ion-icon></div>
+
+            </header>
+            
+            <div class="conteiner_rendimiento">
+                <h2 class="ingresar_title">Ingresar Tiempo de Entrenamiento</h2>
+                <div class="ingresar_rendimiento model_btn">
+                    <ion-icon name="add-outline"></ion-icon>
+                </div>
+            </div>
+
+        </div>
+        <div class="model_bg">
+            <div class="modal">
+                <h3 class="ingresar_title">Ingresa tu tiempo de entrenamiento del día: {{day}}!</h3>
+                <label>Tiempo:</label>
+                <form action="" class="modal" method="POST">
+                {% csrf_token %}
+                <input name='hours' type="number" class="inputs">
+                <button class="btn">Registrar Progreso</button>
+                </form>
+                
+                
+                <div class="close-modal-conteiner"><ion-icon name="close-outline" class="close-modal"></ion-icon></div>
+            </div>
+
+        </div>
+        <div>
+            <h1 class="title">Rendimiento Semanal {% if average > 0 %}
+            <br>La ultima semana, tu rendimiento ha sido de: {{average}} horas
+            {% endif %}</h1>
+            <div class="skills-area">
+                <div class="skill">
+                    <div class="skill-title">Dia 1</div>
+                        <div class="skill-bar"></div>
+                        <div class="dia_1 skill-fill">
+                        
+                            <span class="skill-percent">{% widthratio max_hour_progress_bar 100 progress.lunes %} Horas </span>
+                            
+                        </div>
+                </div>
+                <div class="skill">
+                    <div class="skill-title">Dia 2</div>
+                    <div class="skill-bar"></div>
+                    <div class="dia_2 skill-fill">
+                        <span class="skill-percent">{% widthratio max_hour_progress_bar 100 progress.martes %} Horas </span>
+                    </div>
+                </div>
+                <div class="skill">
+                    <div class="skill-title">Dia 3</div>
+                    <div class="skill-bar"></div>
+                    <div class="dia_3 skill-fill">
+                        <span class="skill-percent">{% widthratio max_hour_progress_bar 100 progress.miercoles %} Horas </span>
+                    </div>
+                </div>
+                <div class="skill">
+                    <div class="skill-title">Dia 4</div>
+                    <div class="skill-bar"></div>
+                    <div class="dia_4 skill-fill">
+                        <span class="skill-percent">{% widthratio max_hour_progress_bar 100 progress.jueves %} Horas </span>
+                    </div>
+                </div>
+                <div class="skill">
+                    <div class="skill-title">Dia 5</div>
+                    <div class="skill-bar"></div>
+                    <div class="dia_5 skill-fill">
+                        <span class="skill-percent">{% widthratio max_hour_progress_bar 100 progress.viernes %} Horas </span>
+                    </div>
+                </div>
+                <div class="skill">
+                    <div class="skill-title">Dia 6</div>
+                    <div class="skill-bar"></div>
+                    <div class="dia_6 skill-fill">
+                        <span class="skill-percent">{% widthratio max_hour_progress_bar 100 progress.sabado %} Horas </span>
+                    </div>
+                </div>
+            </div>
+
+        
+            <div class="wave">
+                <div class="text-wave">
+                    <h3>Este es el Resumen de tu Entrenamiento Semanal, Bien Hecho!</h3>
+                    <br>
+                    <p>Aqui podras ver tu <b>progreso de dias entrenados</b>, el maximo de tiempo de entreno es de <b>3 horas</b> el grafico ira progresando segun la cantidad de tiempo que ingreses.</p>
+                </div>
+            </div>
+        </div>
+    </div>  
+    <style>
+    .dia_1 {
+    animation: dia_1 2s;
+    width: {{progress.lunes}}%;
+  }
+  @keyframes dia_1 {
+    from {
+      width: 0;
+    }
+    to {
+      width: {{progress.lunes}}%;
+    }
+  }
+
+   .dia_2 {
+    animation: dia_2 2s;
+    width: {{progress.martes}}%;
+  }
+  @keyframes dia_2 {
+    from {
+      width: 0;
+    }
+    to {
+      width: {{progress.martes}};
+    }
+  }
+   .dia_3 {
+    animation: dia_3 2s;
+    width: {{progress.miercoles}}%;
+  }
+  @keyframes dia_3 {
+    from {
+      width: 0;
+    }
+    to {
+      width: {{progress.miercoles}};
+    }
+  }
+   .dia_4 {
+    animation: dia_4 2s;
+    width: {{progress.jueves}}%;
+  }
+  @keyframes dia_4 {
+    from {
+      width: 0;
+    }
+    to {
+      width: {{progress.jueves}};
+    }
+  }
+   .dia_5 {
+    animation: dia_5 2s;
+    width: {{progress.viernes}}%;
+  }
+  @keyframes dia_5 {
+    from {
+      width: 0;
+    }
+    to {
+      width: {{progress.viernes}};
+    }
+  }
+   .dia_6 {
+    animation: dia_6 2s;
+    width: {{progress.sabado}}%;
+  }
+  @keyframes dia_6 {
+    from {
+      width: 0;
+    }
+    to {
+      width: {{progress.sabado}};
+    }
+  }
+  
+    </style>
+    <script src="{% static 'JavaScript/main.js' %}"></script>
+    <script src="{% static 'JavaScript/button_function.js' %}"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
