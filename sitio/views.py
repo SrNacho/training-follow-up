@@ -18,7 +18,7 @@ def index(request):
 def data_len_validation(form):
   user,password = form.cleaned_data.get('usuario'),form.cleaned_data.get('password')
   print(user,password)
-  if len(user) >3 and len(user) < 17 and len(password) >3 and len(password) < 15:
+  if len(user) >3 and len(user) < 17 and len(password) >4 and len(password) < 15:
     return True
   else:
     return False
