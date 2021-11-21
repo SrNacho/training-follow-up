@@ -28,4 +28,4 @@ class HorasUsuario(models.Model):
 class CuotaUsuario(models.Model):
   email=models.EmailField(unique=True, null=True)
   fechaExpiracion= models.DateField()
-  fechaInicio=models.DateField()
+  fechaInicio=models.DateField(auto_now=True)
