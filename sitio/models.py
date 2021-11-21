@@ -1,21 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
 
-from .manager import DiscordAuthManager,UsuariosManager
+from .manager import UsuariosManager
 # Create your models here.
-
-class DiscordUser(models.Model):
-  objects = DiscordAuthManager()
-  id = models.BigIntegerField(primary_key=True)
-  discord_user = models.CharField(max_length=100)
-  avatar_id = models.CharField(max_length=100)
-  last_login = models.DateTimeField(null=True)
-
-  def is_authenticated(self,request):
-    return True
-
-  def __str__(self):
-    return self.discord_user
 
 class Usuario(AbstractBaseUser):
   objects = UsuariosManager()
@@ -37,3 +24,8 @@ class HorasUsuario(models.Model):
 
   def __str__(self):
     return self.email
+
+class CuotaUsuario(models.Model):
+  email=models.EmailField(unique=True, null=True)
+  fechaExpiracion= models.DateField()
+  fechaInicio=models.DateField()

@@ -1,25 +1,8 @@
 from django.contrib.auth.backends import BaseBackend
-from .models import DiscordUser,Usuario,HorasUsuario
-
-class DiscordAuthenticationBackend(BaseBackend):
-  def authenticate(self,request,user) -> DiscordUser:
-    find_user_in_database = DiscordUser.objects.filter(id=user['id'])
-    if len(find_user_in_database) == 0:
-      new_user = DiscordUser.objects.create_new_user(user)
-      print("Usuario no encontrado,creando")
-      return new_user
-    else:
-      print("usuario ya existente")
-      return find_user_in_database
-
-  def get_user(self,user_id):
-    try:
-      return DiscordUser.objects.get(pk=user_id)
-    except:
-      return None
+from .models import Usuario,HorasUsuario
 
 class UserAuthenticationBackend(BaseBackend):
-  def authenticate(self,request,user,site) ->DiscordUser:
+  def authenticate(self,request,user,site) ->Usuario:
     find_user_in_database = Usuario.objects.filter(email=user['email'])
     user_exists = len(find_user_in_database)
     if user_exists == 0 and site=='sign_up':
@@ -36,7 +19,7 @@ class UserAuthenticationBackend(BaseBackend):
         print(find_user_in_database)
         return usr
       else:
-        print("noxd")
+        print("no")
     else:
       print("usuario ya existente")
       #return find_user_in_database

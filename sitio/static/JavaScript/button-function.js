@@ -13,6 +13,7 @@ closeModal.addEventListener('click', () => {
 });
 
 
+
 //Validacion del input tiempo
 
 const formulario = document.getElementById('formulario');
