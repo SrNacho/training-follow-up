@@ -4,9 +4,15 @@ from django.contrib.auth.models import AbstractBaseUser
 from .manager import UsuariosManager
 # Create your models here.
 
+
+class CuotaUsuario(models.Model):
+  email=models.EmailField(unique=True, null=True)
+  fechaExpiracion= models.DateField()
+  fechaInicio=models.DateField(auto_now=True)
+  
 class Usuario(AbstractBaseUser):
   objects = UsuariosManager()
-  username = models.CharField(max_length=50,unique=True)
+  username = models.CharField(max_length=50)
   email = models.EmailField(unique=True)
   last_login = models.DateTimeField(null=True)
   USERNAME_FIELD = 'username'
@@ -24,8 +30,3 @@ class HorasUsuario(models.Model):
 
   def __str__(self):
     return self.email
-
-class CuotaUsuario(models.Model):
-  email=models.EmailField(unique=True, null=True)
-  fechaExpiracion= models.DateField()
-  fechaInicio=models.DateField(auto_now=True)

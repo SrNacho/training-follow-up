@@ -63,7 +63,8 @@ def sign_up(request):
           login(request,usuario)
           return redirect('index')
         else:
-          return redirect('sign-up')
+          print("vino por aca")
+          return redirect('sign-up', )
       #return render(request, 'sign-up.html')
   return redirect('index')
 
