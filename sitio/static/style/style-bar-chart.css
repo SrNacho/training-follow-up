@@ -5,7 +5,7 @@
   font-style: normal;
   font-weight: normal;
   src: local("Neometric Extra Bold"),
-    url("../fonts/Neometric\ Alt\ Extra\ Bold\ \(Bold\).woff") format("woff");
+    url("../fonts/NeometricBold.woff") format("woff");
 }
 
 @font-face {
@@ -13,8 +13,7 @@
   font-style: normal;
   font-weight: normal;
   src: local("Neometric Extra Light"),
-    url("../fonts/Neometric\ Alt\ Extra\ Light\ \(Regular\).woff")
-      format("woff");
+    url("../fonts/NeometricLight.woff") format("woff");
 }
 
 * {
