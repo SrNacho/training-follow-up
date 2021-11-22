@@ -1,18 +1,42 @@
-from django.http.response import HttpResponse
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate,login, logout
 from django.contrib.auth.decorators import login_required
 from .forms import RegistroUsuarioForm, IngresoUsuarioForm
-from .models import HorasUsuario
+from .models import HorasUsuario, CuotaUsuario
 from django.core import serializers
+from datetime import date, datetime
 
 # Create your views here.
-oauth_url='https://discord.com/api/oauth2/authorize?client_id=654907160609947651&redirect_uri=http%3A%2F%2F127.0.0.1%3A8000%2Flogin_redirect&response_type=code&scope=identify%20guilds%20email%20connections'
 Max_Hour_Progress_Bar = 5 # x = 100% of the progress bar
 
 @login_required(login_url='sign-in')
 def index(request):
-  return render(request,'index.html')
+  cuotaObject = CuotaUsuario.objects.all().filter(email=request.user.email)
+  data = serializers.serialize( "python", cuotaObject)
+  fechaActual = datetime.today().strftime('%Y-%m-%d')
+  if request.method=='POST':
+    fecha = request.POST['fecha']
+    form = CuotaUsuario(email=request.user.email, fechaExpiracion=datetime.strftime(datetime.strptime(fecha, '%d-%m-%Y'), '%Y-%m-%d'))
+    if data:
+      cuotaObject.update(fechaInicio=fechaActual, fechaExpiracion=datetime.strftime(datetime.strptime(fecha, '%d-%m-%Y'), '%Y-%m-%d'))
+    else:
+      form.save()
+    return redirect('index')
+  if data:
+    delta = data[0]['fields']['fechaExpiracion']-data[0]['fields']['fechaInicio']
+    diasCuota = datetime.now().day-datetime.strptime(datetime.strftime(data[0]['fields']['fechaInicio'], '%d'),'%d').day
+    
+    print(delta.days)
+    porcentaje = 100 if delta.days == 0 else ((diasCuota/delta.days)*100)
+    print(data[0]['fields'])
+    if porcentaje>=100:
+      porcentaje=100
+      ctx={'hasALoggedDate':False, 'diasCuota':diasCuota,'totalDiasCuota':delta.days, 'porcentajeProgreso':int(porcentaje), 'fechaActual':fechaActual}
+      return render(request,'index.html', ctx)
+    ctx={'hasALoggedDate':True, 'diasCuota':diasCuota,'totalDiasCuota':delta.days, 'porcentajeProgreso':int(porcentaje), 'fechaActual':fechaActual}
+    return render(request,'index.html', ctx)
+  ctx={'hasALoggedDate':False, 'firstTime':True, 'totalProgreso':0, 'porcentajeProgreso':0, 'fechaActual':fechaActual}
+  return render(request,'index.html', ctx)
 
 #Login-Register pages
 def data_len_validation(form):
@@ -39,7 +63,8 @@ def sign_up(request):
           login(request,usuario)
           return redirect('index')
         else:
-          return redirect('sign-up')
+          print("vino por aca")
+          return redirect('sign-up', )
       #return render(request, 'sign-up.html')
   return redirect('index')
 

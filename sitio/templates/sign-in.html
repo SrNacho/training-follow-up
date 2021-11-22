@@ -1,60 +1,74 @@
-{% load static %}
+<!-- {% load static %} -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign In</title>
-    <link rel="stylesheet" href='{% static 'style/style_sign_up.css' %}'>
+    <title>Pantalla principal</title>
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'style/style.css' %}">
 </head>
 
 <body>
-    <div class="container">
-        <div class="forms-container">    
-            <form action="" method="POST" class="sign-up" id="formulario">
+    <div class="container_main">
+        <div class="conteiner_header">
+            <div class="mainHeader">
+                <div class="header">
+                    <div class="header__nav">
+                        <div class="title">
+                            <h1>Training</h1>
+                            <h1>Follow-Up</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <form action="" method="POST" class="sign-up" id="formulario">
             {% csrf_token %}
-                <h2 class="title">Ingrese su Usuario:</h2>
-                <!-- {% csrf_token %} -->
-                <div class="input-field">
-                    <div class="formulario__grupo-input" id="grupo__email">
-                        <i class="formulario__validacion-estado fas fa-times-circle"></i>
-                        <i class="fas fa-envelope"></i>
-                        {{form.email}}
+                <div class="loginContainer">
+                    <div class="itemLoginContainer">
+                        <div class="inputContainers">
+                            <div class="field formulario__grupo-input" id="grupo__email">
+                                <input type="text" class="emailInput" placeholder="Email" name='email'>
+                                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                            </div>
+                            <div class="field formulario__grupo-input" id="grupo__password">
+                                <input type="password" class="emailInput" placeholder="Password" name='password'>
+                                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                            </div>
+                            <div class="buttonsContainerLogin">
+                                <button class="loginContainerFromSignUp">
+                            
+                                    <div class="loginBtnText">
+                                        <h1>Loguearse </h1>
+                                        <ion-icon name="arrow-forward-outline"></ion-icon>
+                                    </div>
+                                    </button>
+                                    <a href="{% url 'sign-up' %}">
+                                <div class="registerButtons">
+                                    <div class="registerBtnText">
+                                        <ion-icon name="arrow-back-outline"></ion-icon>
+                                        <h1>Registrarse </h1>
+                                    </div>
+                                </div>
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                    <p class="formulario__input-error">El correo solo puede contener letras, numeros, puntos y guion bajo.</p>
                 </div>
-    
-                <div class="input-field">
-                    <div class="formulario__grupo-input" id="grupo__password">
-                        <i class="formulario__validacion-estado fas fa-times-circle"></i>
-                        <i class="fas fa-lock"></i>
-                        {{form.password}}
-                    </div>
-                    <p class="formulario__input-error">La contraseña tiene que ser de 4 a 12 digitos.</p>
-                </div>
-    
-                <div class="formulario__mensaje" id="formulario__mensaje">
-                    <p><i class="fas fa-exclamation-triangle"></i><b>Error:</b> Por favor ingrese bien los campos.</p>
-                </div>
-    
-                <input type="submit" class="btn" value="Ingrese"/>
-                <span>O si no estas registrado:</span>
-                <div class="btn"><a href="{% url 'sign-up' %}">Registrate</div>
-            </form>      
+            </form>
         </div>
-    </div>
-    <div class="panels-container"></div>
-
-    <script src="{% static 'JavaScript/formulario_login.js' %}"></script>
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+            integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        <script src="{% static './JavaScript/formulario_login.js' %}"></script>
 
 </body>
 

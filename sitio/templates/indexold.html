@@ -1,0 +1,136 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pantalla principal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'style/style.css' %}">
+</head>
+<body>
+<style>
+#progress-done {
+  height: 100%;
+  width: {{porcentajeProgreso}}%;
+  background: linear-gradient(to bottom, #4a00e0, #8e2de2);
+  box-shadow: 0 3px 3px -5px #4a00e0, 0 2px 5px #4a00e0;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 1s ease 0.3s;
+}
+</style>
+    <div class="container_main">
+        <div class="main">
+            <header class="header__nav">
+                <div class="logo">
+                    <!-- <img src="logo">
+                    <a href="" class="header__logo">Project</a> -->
+                    
+                </div>
+                <nav class="nav" id="nav-menu">
+                    <ion-icon name="close-outline" class="header__close" id="close-menu"></ion-icon>
+                    <ul class="nav__list">
+                                            <li class="nav__item"><a href="{% url 'index' %}" class="nav__link">Seguimiento</a></li>
+                    <li class="nav__item"><a href="{% url 'performance' %}" class="nav__link">Rendimiento</a></li>
+                    <li class="nav__item"><a href="sign-up.html" class="nav__link">Usuario</a></li>
+                    <li class="nav__item"><a href="{% url 'log-out' %}" class="nav__link">Log Out</a></li>
+                    </ul>
+                </nav>
+
+                <div class="fondo__menu"><ion-icon name="menu-outline" class="header__toggle" id="toggle-menu"></ion-icon></div>
+
+            </header>
+
+        
+            <section class="textos__header">
+                <h1 class="title">Training Follow-Up</h1>
+                <h3 class="textos">Tu App de seguimiento de pago mensual!</h2>
+            </section>
+            {%if not hasALoggedDate%}
+            <div class="conteiner_btn">
+                <div class="model_btn">
+                    <ion-icon name="add-outline"></ion-icon>
+                </div>
+                <h1>Agregar cuota</h1>
+            </div>
+            {%else%}
+            <div class="conteiner_btn">
+                <div class="model_btn">
+                    <ion-icon name="create-outline"></ion-icon>
+                </div>
+                <h1>Edite su fecha de expiración</h1>
+            </div>
+            {%endif%}
+        </div>
+
+        <div class="model_bg">
+            <div class="modal">
+                <!-- <div class="wrapper">
+                    <label for="datepicker">Seleccione una fecha</label><br>
+                    <input type="date" id="datepicker">	
+                    <div class="btn">Ingrese</div>
+                </div> -->
+                <form method="POST" id="formulario">
+                {% csrf_token %}
+                <div class="wrapper">
+                    <h3 class="ingresar_title">Ingrese una Fecha</h3>
+                    <label for="datepicker">Selecciona una Fecha:
+                        <input type="text" name="fecha" id="datepicker" autocomplete="off">
+                    </label>	
+                    <input type="submit" class="btn" value="Ingresar" />
+                </div>
+                    </form>
+                <div class="close-modal-conteiner"><ion-icon name="close-outline" class="close-modal"></ion-icon></div>
+            </div>
+        </div>
+
+        <div class="conteiner__bar">
+            <div class="conteiner__title__progreso"><h1 class="title__progreso"><center>{% if not firstTime %}Progreso de tu cuota {%else%}Comienza añadiendo una cuota {%endif%}</center></h1></div>
+            <div class="conteiner-barra-progresiva">
+                <span>{{porcentajeProgreso}}%</span>
+                <div class="progress">
+                        <div id="progress-done" data-done= "20"></div>
+                </div>
+            </div>
+        </div>
+        
+            {% if not firstTime %}
+        <div class="wave">
+            <div class="text-wave">
+                <h3>Te quedan {{diasCuota}}/{{totalDiasCuota}} dias de cuota!</h3>
+                <br>
+                <p>Aqui podras ver el <b>progreso de tu cuota mensual</b>, cuando la barra llegue a su <b>100%</b> habra pasado su mes pagado.</p>
+            </div>
+        </div>
+            {% endif %}
+        
+    </div>  
+    <script src="{% static 'JavaScript/main.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"></script>
+    <script>
+    let minDate = `{{fechaActual}}`
+    minDate=Date(minDate)
+    $(function () {
+  $("#datepicker").datepicker({
+    dateFormat: "dd-mm-yy",
+    duration: "fast",
+    minDate: new Date( minDate),
+  });
+});
+    </script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+
+
+</body>
+</html>

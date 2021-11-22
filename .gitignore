@@ -115,5 +115,5 @@ GitHub.sublime-settings
 !.vscode/extensions.json 
 .history
 
-training/settings.py
+#training/settings.py
 sitio/views copy.py

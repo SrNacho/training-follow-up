@@ -8,177 +8,30 @@
     <title>Pantalla principal</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script
+      src="https://kit.fontawesome.com/e8c3e9bc8c.js"
+      crossorigin="anonymous"
+    ></script>
     <link
       href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="{% static 'style/style_bar_chart.css' %}" />
+    <link rel="stylesheet" href="{% static 'style/style.css' %}" />
   </head>
+
   <body>
-    <div class="container_main">
-      <div class="conteiner_background">
-        <header class="header__nav">
-          <div class="logo">
-            <!-- <img src="logo">
-                    <a href="" class="header__logo">Project</a> -->
-          </div>
-          <nav class="nav" id="nav-menu">
-            <ion-icon
-              name="close-outline"
-              class="header__close"
-              id="close-menu"
-            ></ion-icon>
-            <ul class="nav__list">
-              <li class="nav__item">
-                <a href="{% url 'index' %}" class="nav__link">Seguimiento</a>
-              </li>
-              <li class="nav__item">
-                <a href="{% url 'performance' %}" class="nav__link"
-                  >Rendimiento</a
-                >
-              </li>
-              <li class="nav__item">
-                <a href="#" class="nav__link">Usuario</a>
-              </li>
-              <li class="nav__item">
-                <a href="{% url 'log-out' %}" class="nav__link">Log Out</a>
-              </li>
-            </ul>
-          </nav>
-
-          <div class="fondo__menu">
-            <ion-icon
-              name="menu-outline"
-              class="header__toggle"
-              id="toggle-menu"
-            ></ion-icon>
-          </div>
-        </header>
-
-        <div class="conteiner_rendimiento">
-          <h2 class="ingresar_title">Ingresar Tiempo de Entrenamiento</h2>
-          <div class="ingresar_rendimiento model_btn">
-            <ion-icon name="add-outline"></ion-icon>
-          </div>
-        </div>
-      </div>
-      <div class="model_bg">
-        <div class="modal">
-          <h3 class="ingresar_title">
-            Ingresa tu tiempo de entrenamiento del día: {{day}}!
-          </h3>
-          <label>Tiempo:</label>
-          <form action="" method="POST" id="formulario">
-            {% csrf_token %}
-            <div class="input-field">
-              <div class="formulario__grupo-input" id="grupo__tiempo">
-                <i
-                  class="formulario__validacion-estado fas fa-times-circle"
-                ></i>
-                <i class="fas fa-clock"></i>
-                <input
-                  type="number"
-                  name="tiempo"
-                  placeholder="Ingrese su tiempo"
-                />
-              </div>
-            </div>
-
-            <div class="formulario__mensaje" id="formulario__mensaje">
-              <p>
-                <i class="fas fa-exclamation-triangle"></i><b>Error:</b> Solo se
-                admite de 1 a 6 horas.
-              </p>
-            </div>
-            <div class="close-modal-conteiner">
-              <ion-icon name="close-outline" class="close-modal"></ion-icon>
-            </div>
-            <input type="submit" class="btn" value="Ingresar" />
-          </form>
-        </div>
-      </div>
-      <div>
-        <h1 class="title">
-          Rendimiento Semanal: {% if average > 0 %} <br />La ultima semana, tu
-          rendimiento ha sido de: {{average}} horas {% endif %}
-        </h1>
-        <div class="skills-area">
-          <div class="skill">
-            <div class="skill-title">Dia 1</div>
-            <div class="skill-bar"></div>
-            <div class="dia_1 skill-fill">
-              <span class="skill-percent"
-                >{% widthratio max_hour_progress_bar 100 progress.lunes %} Horas
-              </span>
-            </div>
-          </div>
-          <div class="skill">
-            <div class="skill-title">Dia 2</div>
-            <div class="skill-bar"></div>
-            <div class="dia_2 skill-fill">
-              <span class="skill-percent"
-                >{% widthratio max_hour_progress_bar 100 progress.martes %}
-                Horas
-              </span>
-            </div>
-          </div>
-          <div class="skill">
-            <div class="skill-title">Dia 3</div>
-            <div class="skill-bar"></div>
-            <div class="dia_3 skill-fill">
-              <span class="skill-percent"
-                >{% widthratio max_hour_progress_bar 100 progress.miercoles %}
-                Horas
-              </span>
-            </div>
-          </div>
-          <div class="skill">
-            <div class="skill-title">Dia 4</div>
-            <div class="skill-bar"></div>
-            <div class="dia_4 skill-fill">
-              <span class="skill-percent"
-                >{% widthratio max_hour_progress_bar 100 progress.jueves %}
-                Horas
-              </span>
-            </div>
-          </div>
-          <div class="skill">
-            <div class="skill-title">Dia 5</div>
-            <div class="skill-bar"></div>
-            <div class="dia_5 skill-fill">
-              <span class="skill-percent"
-                >{% widthratio max_hour_progress_bar 100 progress.viernes %}
-                Horas
-              </span>
-            </div>
-          </div>
-          <div class="skill">
-            <div class="skill-title">Dia 6</div>
-            <div class="skill-bar"></div>
-            <div class="dia_6 skill-fill">
-              <span class="skill-percent"
-                >{% widthratio max_hour_progress_bar 100 progress.sabado %}
-                Horas
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <div class="wave">
-          <div class="text-wave">
-            <h3>Este es el Resumen de tu Entrenamiento Semanal, Bien Hecho!</h3>
-            <br />
-            <p>
-              Aqui podras ver tu <b>progreso de dias entrenados</b>, el maximo
-              de tiempo de entreno es de <b>5 horas</b> el grafico ira
-              progresando segun la cantidad de tiempo que ingreses.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
     <style>
-        .dia_1 {
+            #progress-done {
+              height: 100%;
+              width: {{porcentajeProgreso}}%;
+              background: #fe7991;
+              border-radius: 20px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              transition: 1s ease 0.3s;
+            }
+             .dia_1 {
         animation: dia_1 2s;
         width: {{progress.lunes}}%;
       }
@@ -252,8 +105,217 @@
         }
       }
     </style>
-    <script src="{% static 'JavaScript/main.js' %}"></script>
-    <script src="{% static 'JavaScript/button_function.js' %}"></script>
+    <div class="container_main">
+      <div class="conteiner_header">
+        <div class="mainHeader">
+          <div class="header">
+            <div class="header__nav">
+              <div class="title">
+                <h1>Training</h1>
+                <h1>Follow-Up</h1>
+              </div>
+              <div class="margin-hamburger"></div>
+            </div>
+          </div>
+        </div>
+        <div class="card" style="padding-bottom: 150px">
+          {%if not hasALoggedDate%}
+          <div class="card__container model_btn">
+            <div class="card_container red">
+              <div class="card_btn_container">
+                <ion-icon name="alarm-outline" class="model_btn"></ion-icon>
+              </div>
+              <div class="card_text">
+                <h1>Presiona</h1>
+                <h5>Para ingresar tiempo entrenado del día {{day}}</h5>
+              </div>
+            </div>
+          </div>
+          {% else %}
+          <div class="card__container model_btn">
+            <div class="card_container blue">
+              <div class="card_btn_container">
+                <ion-icon name="create-outline" class="model_btn"></ion-icon>
+              </div>
+              <div class="card_text">
+                <h1>Presione el botón</h1>
+                <h5>Para editar la duración de la cuota</h5>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+          <div class="advice">
+            <div class="conteiner__bar">
+              <div class="conteiner-barra-progresiva">
+                <div class="titleBarra">
+                  Rendimiento Semanal: {% if average > 0 %} <br />La ultima
+                  semana, tu rendimiento ha sido de: {{average}} horas {%endif%}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="itemContainer">
+            <div class="conteiner__bar">
+              <div class="conteiner-barra-progresiva">
+                <div class="skills-area">
+                  <div class="skill">
+                    <div class="skill-title">Lunes</div>
+                    <div class="skill-bar">
+                      <div class="dia_1 skill-fill">
+                        <span class="skill-percent">50%</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="skill">
+                    <div class="skill-title">Martes</div>
+                    <div class="skill-bar">
+                      <div class="dia_2 skill-fill">
+                        <span class="skill-percent">90%</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="skill">
+                    <div class="skill-title">Miercoles</div>
+                    <div class="skill-bar">
+                      <div class="dia_3 skill-fill">
+                        <span class="skill-percent">20%</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="skill">
+                    <div class="skill-title">Jueves</div>
+                    <div class="skill-bar">
+                      <div class="dia_4 skill-fill">
+                        <span class="skill-percent">60%</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="skill">
+                    <div class="skill-title">Viernes</div>
+                    <div class="skill-bar">
+                      <div class="dia_5 skill-fill">
+                        <span class="skill-percent">40%</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="skill">
+                    <div class="skill-title">Sabado</div>
+                    <div class="skill-bar">
+                      <div class="dia_6 skill-fill">
+                        <span class="skill-percent">70%</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mainContainer">
+        <div class="body"></div>
+      </div>
+      <div class="filtro">
+        <form method="POST" id="formulario">
+          <div class="model_bg">
+            <div class="modal">
+              {% csrf_token %}
+              <div class="wrapper">
+                <h3 class="ingresar_title">
+                  Ingresa tu tiempo de entrenamiento del día: {{day}}!
+                </h3>
+                <form action="" method="POST" id="formulario">
+                  {% csrf_token %}
+                  <div class="input-field">
+                    <div class="formulario__grupo-input" id="grupo__tiempo">
+                      <i class="fas fa-clock"></i>
+                      <input
+                        class="hourInput"
+                        type="number"
+                        name="tiempo"
+                        placeholder="Ingrese su tiempo"
+                      />
+                      <i
+                        class="
+                          formulario__validacion-estado
+                          fas
+                          fa-times-circle
+                        "
+                      ></i>
+                    </div>
+                  </div>
+
+                  <div class="formulario__mensaje" id="formulario__mensaje">
+                    <p>
+                      <i class="fas fa-exclamation-triangle"></i
+                      ><b>Error:</b> Solo se admite de 1 a 5 horas.
+                    </p>
+                  </div>
+                  <div class="close-modal-conteiner">
+                    <ion-icon
+                      name="close-outline"
+                      class="close-modal"
+                    ></ion-icon>
+                  </div>
+                  <button class="btn">Ingresar</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="navigation-container">
+        <div class="navigation">
+          <a href="{% url 'performance' %}">
+            <div class="container-rendimiento">
+              <i class="fas fa-dumbbell"></i>
+            </div>
+          </a>
+          <div class="btn-home">
+            <a href="{% url 'index' %}">
+              <div class="btn-deg">
+                <div class="container-home"><i class="fas fa-home"></i></div>
+              </div>
+            </a>
+          </div>
+          <div class="container-user">
+            <a href="{% url 'log-out' %}">
+              <i class="fas fa-sign-out-alt"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="JavaScript/main.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+      integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      let minDate = `{{fechaActual}}`;
+      minDate = Date(minDate);
+      $(function () {
+        $("#datepicker").datepicker({
+          dateFormat: "dd-mm-yy",
+          duration: "fast",
+          minDate: new Date(minDate),
+        });
+      });
+    </script>
+    <script src="{% static 'JavaScript/button-function.js' %}"></script>
+
     <script
       type="module"
       src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
@@ -261,10 +323,6 @@
     <script
       nomodule
       src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
-    ></script>
-    <script
-      src="https://kit.fontawesome.com/2c36e9b7b1.js"
-      crossorigin="anonymous"
     ></script>
   </body>
 </html>

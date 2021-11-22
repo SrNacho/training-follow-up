@@ -1,25 +1,18 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
 
-from .manager import DiscordAuthManager,UsuariosManager
+from .manager import UsuariosManager
 # Create your models here.
 
-class DiscordUser(models.Model):
-  objects = DiscordAuthManager()
-  id = models.BigIntegerField(primary_key=True)
-  discord_user = models.CharField(max_length=100)
-  avatar_id = models.CharField(max_length=100)
-  last_login = models.DateTimeField(null=True)
 
-  def is_authenticated(self,request):
-    return True
-
-  def __str__(self):
-    return self.discord_user
-
+class CuotaUsuario(models.Model):
+  email=models.EmailField(unique=True, null=True)
+  fechaExpiracion= models.DateField()
+  fechaInicio=models.DateField(auto_now=True)
+  
 class Usuario(AbstractBaseUser):
   objects = UsuariosManager()
-  username = models.CharField(max_length=50,unique=True)
+  username = models.CharField(max_length=50)
   email = models.EmailField(unique=True)
   last_login = models.DateTimeField(null=True)
   USERNAME_FIELD = 'username'
