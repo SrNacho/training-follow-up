@@ -41,12 +41,8 @@ const validarCampo = (expresion, input, campo) => {
     document
       .getElementById(`grupo__${campo}`)
       .classList.add("formulario__grupo-correcto");
-    document
-      .querySelector(`#grupo__${campo} i`)
-      .classList.add("fa-check-circle");
-    document
-      .querySelector(`#grupo__${campo} i`)
-      .classList.remove("fa-times-circle");
+    document.getElementById(`checkElement`).classList.add("fa-check-circle");
+    document.getElementById(`checkElement`).classList.remove("fa-times-circle");
     campos[campo] = true;
   } else {
     document
@@ -55,12 +51,8 @@ const validarCampo = (expresion, input, campo) => {
     document
       .getElementById(`grupo__${campo}`)
       .classList.remove("formulario__grupo-correcto");
-    document
-      .querySelector(`#grupo__${campo} i`)
-      .classList.add("fa-times-circle");
-    document
-      .querySelector(`#grupo__${campo} i`)
-      .classList.remove("fa-check-circle");
+    document.getElementById('checkElement').classList.add("fa-times-circle");
+    document.getElementById(`checkElement`).classList.remove("fa-check-circle");
     campos[campo] = false;
   }
 };

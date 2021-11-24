@@ -159,18 +159,20 @@
               <div class="conteiner-barra-progresiva">
                 <div class="skills-area">
                   <div class="skill">
-                    <div class="skill-title">Lunes - {% widthratio max_hour_progress_bar 100 progress.lunes %} Horas</div>
+                    <div class="skill-title">
+                      Lunes - {% widthratio max_hour_progress_bar 100 progress.lunes %} Horas
+                    </div>
                     <div class="skill-bar">
                       <div class="dia_1 skill-fill">
-                        <span class="skill-percent">
-                          
-                        </span>
+                        <span class="skill-percent"> </span>
                       </div>
                     </div>
                   </div>
 
                   <div class="skill">
-                    <div class="skill-title">Martes - {% widthratio max_hour_progress_bar 100 progress.martes %} Horas</div>
+                    <div class="skill-title">
+                      Martes - {% widthratio max_hour_progress_bar 100 progress.martes %} Horas
+                    </div>
                     <div class="skill-bar">
                       <div class="dia_2 skill-fill">
                         <span class="skill-percent"></span>
@@ -179,7 +181,9 @@
                   </div>
 
                   <div class="skill">
-                    <div class="skill-title">Miercoles - {% widthratio max_hour_progress_bar 100 progress.miercoles %} Horas</div>
+                    <div class="skill-title">
+                      Miercoles - {% widthratio max_hour_progress_bar 100 progress.miercoles %} Horas
+                    </div>
                     <div class="skill-bar">
                       <div class="dia_3 skill-fill">
                         <span class="skill-percent"></span>
@@ -188,17 +192,18 @@
                   </div>
 
                   <div class="skill">
-                    <div class="skill-title">Jueves - {% widthratio max_hour_progress_bar 100 progress.jueves %} Horas</div>
+                    <div class="skill-title"> Jueves - {% widthratio max_hour_progress_bar 100 progress.jueves %} Horas</div>
                     <div class="skill-bar">
                       <div class="dia_4 skill-fill">
-                        <span class="skill-percent"> 
-												</span>
+                        <span class="skill-percent"> </span>
                       </div>
                     </div>
                   </div>
 
                   <div class="skill">
-                    <div class="skill-title">Viernes - {% widthratio max_hour_progress_bar 100 progress.viernes %} Horas</div>
+                    <div class="skill-title">
+                      Viernes - {% widthratio max_hour_progress_bar 100 progress.viernes %} Horas
+                    </div>
                     <div class="skill-bar">
                       <div class="dia_5 skill-fill">
                         <span class="skill-percent"></span>
@@ -207,7 +212,9 @@
                   </div>
 
                   <div class="skill">
-                    <div class="skill-title">Sabado - {% widthratio max_hour_progress_bar 100 progress.sabado %} Horas</div>
+                    <div class="skill-title">
+                      Sabado - {% widthratio max_hour_progress_bar 100 progress.sabado %} Horas
+                    </div>
                     <div class="skill-bar">
                       <div class="dia_6 skill-fill">
                         <span class="skill-percent"></span>
@@ -228,7 +235,7 @@
         <form method="POST" id="formulario">
           <div class="model_bg">
             <div class="close-modal-conteiner model_btn">
-              <ion-icon name="close-outline" class="close-modal "></ion-icon>
+              <ion-icon name="close-outline" class="close-modal"></ion-icon>
             </div>
             <div class="modal">
               {% csrf_token %}
@@ -240,6 +247,7 @@
                   {% csrf_token %}
                   <div class="input-field">
                     <div class="formulario__grupo-input" id="grupo__tiempo">
+
                       <i class="fas fa-clock"></i>
                       <input
                         class="hourInput"
@@ -247,12 +255,11 @@
                         name="tiempo"
                         placeholder="Ingrese su tiempo"
                       />
-                      <i
-                        class="
-                          formulario__validacion-estado
+                        <i class="formulario__validacion-estado
                           fas
                           fa-times-circle
                         "
+                        id="checkElement"
                       ></i>
                     </div>
                   </div>
@@ -260,7 +267,7 @@
                   <div class="formulario__mensaje" id="formulario__mensaje">
                     <p>
                       <i class="fas fa-exclamation-triangle"></i
-                      ><b>Error:</b> Solo se admite de 1 a 5 horas.
+                      > Solo se admite de 1 a 5 horas.
                     </p>
                   </div>
                   {% comment %}
@@ -280,11 +287,11 @@
       </div>
       <div class="navigation-container">
         <div class="navigation">
-            <div class="container-rendimiento">
-          <a href="{% url 'performance' %}">
+          <div class="container-rendimiento">
+            <a href="{% url 'performance' %}">
               <i class="fas fa-dumbbell"></i>
-          </a>
-            </div>
+            </a>
+          </div>
           <div class="btn-home">
             <a href="{% url 'index' %}">
               <div class="btn-deg">
