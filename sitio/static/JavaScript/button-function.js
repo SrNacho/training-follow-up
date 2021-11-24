@@ -25,13 +25,19 @@ const campos = {
   tiempo: false,
 };
 
+
+let fueValidado = false;
+
 const validarFormulario = (e) => {
   switch (e.target.name) {
     case "tiempo":
-      validarCampo(expresiones.tiempo, e.target, "tiempo");
+      const result = validarCampo(expresiones.tiempo, e.target, "tiempo");
+      fueValidado = result;
       break;
   }
 };
+
+const estaValidado = () => fueValidado;
 
 const validarCampo = (expresion, input, campo) => {
   if (expresion.test(input.value)) {
@@ -44,6 +50,7 @@ const validarCampo = (expresion, input, campo) => {
     document.getElementById(`checkElement`).classList.add("fa-check-circle");
     document.getElementById(`checkElement`).classList.remove("fa-times-circle");
     campos[campo] = true;
+    return true;
   } else {
     document
       .getElementById(`grupo__${campo}`)
@@ -54,6 +61,10 @@ const validarCampo = (expresion, input, campo) => {
     document.getElementById('checkElement').classList.add("fa-times-circle");
     document.getElementById(`checkElement`).classList.remove("fa-check-circle");
     campos[campo] = false;
+    document.getElementById("checkElement").classList.add("fa-times-circle");
+    document.getElementById(`checkElement`).classList.remove("fa-check-circle");
+    campos[campo] = false;
+    return false;
   }
 };
 
