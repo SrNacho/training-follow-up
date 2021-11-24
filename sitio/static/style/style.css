@@ -453,19 +453,15 @@ ul {
   top: 0;
   right: 0;
   font-size: 25px;
+  z-index: 2000;
 }
 
 .close-modal-conteiner {
   position: absolute;
-  top: 5px;
-  right: 10px;
-  cursor: pointer;
-  width: 30px;
-  height: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   color: white;
+  top: 0;
+  right: 0;
+  font-size: 25px;
 }
 
 .modal {
@@ -515,7 +511,7 @@ ul {
 }
 
 .skill {
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   font-family: "Neometric Extra Bold";
   font-weight: 900;
 }

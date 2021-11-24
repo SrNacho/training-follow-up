@@ -159,55 +159,58 @@
               <div class="conteiner-barra-progresiva">
                 <div class="skills-area">
                   <div class="skill">
-                    <div class="skill-title">Lunes</div>
+                    <div class="skill-title">Lunes - {% widthratio max_hour_progress_bar 100 progress.lunes %} Horas</div>
                     <div class="skill-bar">
                       <div class="dia_1 skill-fill">
-                        <span class="skill-percent">50%</span>
+                        <span class="skill-percent">
+                          
+                        </span>
                       </div>
                     </div>
                   </div>
 
                   <div class="skill">
-                    <div class="skill-title">Martes</div>
+                    <div class="skill-title">Martes - {% widthratio max_hour_progress_bar 100 progress.martes %} Horas</div>
                     <div class="skill-bar">
                       <div class="dia_2 skill-fill">
-                        <span class="skill-percent">90%</span>
+                        <span class="skill-percent"></span>
                       </div>
                     </div>
                   </div>
 
                   <div class="skill">
-                    <div class="skill-title">Miercoles</div>
+                    <div class="skill-title">Miercoles - {% widthratio max_hour_progress_bar 100 progress.miercoles %} Horas</div>
                     <div class="skill-bar">
                       <div class="dia_3 skill-fill">
-                        <span class="skill-percent">20%</span>
+                        <span class="skill-percent"></span>
                       </div>
                     </div>
                   </div>
 
                   <div class="skill">
-                    <div class="skill-title">Jueves</div>
+                    <div class="skill-title">Jueves - {% widthratio max_hour_progress_bar 100 progress.jueves %} Horas</div>
                     <div class="skill-bar">
                       <div class="dia_4 skill-fill">
-                        <span class="skill-percent">60%</span>
+                        <span class="skill-percent"> 
+												</span>
                       </div>
                     </div>
                   </div>
 
                   <div class="skill">
-                    <div class="skill-title">Viernes</div>
+                    <div class="skill-title">Viernes - {% widthratio max_hour_progress_bar 100 progress.viernes %} Horas</div>
                     <div class="skill-bar">
                       <div class="dia_5 skill-fill">
-                        <span class="skill-percent">40%</span>
+                        <span class="skill-percent"></span>
                       </div>
                     </div>
                   </div>
 
                   <div class="skill">
-                    <div class="skill-title">Sabado</div>
+                    <div class="skill-title">Sabado - {% widthratio max_hour_progress_bar 100 progress.sabado %} Horas</div>
                     <div class="skill-bar">
                       <div class="dia_6 skill-fill">
-                        <span class="skill-percent">70%</span>
+                        <span class="skill-percent"></span>
                       </div>
                     </div>
                   </div>
@@ -224,6 +227,9 @@
       <div class="filtro">
         <form method="POST" id="formulario">
           <div class="model_bg">
+            <div class="close-modal-conteiner model_btn">
+              <ion-icon name="close-outline" class="close-modal "></ion-icon>
+            </div>
             <div class="modal">
               {% csrf_token %}
               <div class="wrapper">
@@ -257,12 +263,14 @@
                       ><b>Error:</b> Solo se admite de 1 a 5 horas.
                     </p>
                   </div>
+                  {% comment %}
                   <div class="close-modal-conteiner">
                     <ion-icon
                       name="close-outline"
                       class="close-modal"
                     ></ion-icon>
                   </div>
+                  {% endcomment %}
                   <button class="btn">Ingresar</button>
                 </form>
               </div>
@@ -272,11 +280,11 @@
       </div>
       <div class="navigation-container">
         <div class="navigation">
-          <a href="{% url 'performance' %}">
             <div class="container-rendimiento">
+          <a href="{% url 'performance' %}">
               <i class="fas fa-dumbbell"></i>
-            </div>
           </a>
+            </div>
           <div class="btn-home">
             <a href="{% url 'index' %}">
               <div class="btn-deg">
