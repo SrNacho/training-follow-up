@@ -594,6 +594,7 @@ ul {
   border: 1px solid transparent;
   line-height: 1.5rem;
   padding-left: 5%;
+  padding-right: 5%;
   font-size: 1rem;
   color: #607d8b;
   width: 100%;
@@ -907,6 +908,16 @@ span {
 .formulario__grupo-correcto .formulario__validacion-estado {
   color: #1ed12d;
   opacity: 1;
+}
+
+.formulario__grupo-input {
+  position: relative;
+}
+
+.formulario__validacion-estado {
+  z-index: 180;
+  font-size: 16px;
+  opacity: 0;
 }
 
 .formulario__grupo-incorrecto .formulario__validacion-estado {
