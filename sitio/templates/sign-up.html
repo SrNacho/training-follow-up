@@ -27,7 +27,7 @@
                     </div>
                 </div>
             </div>
-           <form action="" method="POST" class="sign-up" id="formulario">
+           <form action="" method="POST" class="sign-up" id="formulario" onsubmit="return estaValidado()">
           {% csrf_token %}
                 <div class="loginContainer">
                     <div class="itemLoginContainer">
