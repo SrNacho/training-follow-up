@@ -127,4 +127,5 @@ def performan(request):
     else:
       return redirect('performance')
   else:
+    print(ctx)
     return render(request,'rendimiento.html',ctx)
