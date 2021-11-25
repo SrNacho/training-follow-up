@@ -76,7 +76,12 @@ def sign_in(request):
         'form':form
       }
       return render(request,'sign-in.html',ctx)
-    else:
+    elif request.method=="POST" and 'sendVerificationCode' in request.POST:
+        
+        print("asdasdas")
+        return redirect('sign-in')
+    elif request.method=="POST" and 'loginButton' in request.POST:
+      print(request.POST)
       form = IngresoUsuarioForm(request.POST)
       if form.is_valid():
         usuario = authenticate(request,user=form.cleaned_data,site='sign_in')

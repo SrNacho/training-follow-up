@@ -483,7 +483,11 @@ ul {
   justify-content: center;
   align-items: center;
   width: 100%;
-  background: linear-gradient(146deg, rgba(148, 158, 233, 1) 0%, rgba(98, 106, 210, 1) 100% );
+  background: linear-gradient(
+    146deg,
+    rgba(148, 158, 233, 1) 0%,
+    rgba(98, 106, 210, 1) 100%
+  );
   border: none;
   outline: none;
   height: 49px;
@@ -586,7 +590,7 @@ ul {
   }
 }
 
-.changeModalWidth{
+.changeModalWidth {
   width: 80vw !important;
 }
 
@@ -1099,6 +1103,8 @@ input[type="number"] {
   font-size: 12px;
   font-weight: bold;
   font-family: "Neometric Extra Light";
+  background-color: transparent;
+  border: none;
 }
 
 .changePassword {
