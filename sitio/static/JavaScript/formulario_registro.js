@@ -53,6 +53,7 @@ const validarCampo = (expresion, input, campo) => {
       .querySelector(`#grupo__${campo} i`)
       .classList.remove("fa-times-circle");
     campos[campo] = true;
+    return true;
   } else {
     document
       .getElementById(`grupo__${campo}`)
@@ -67,6 +68,7 @@ const validarCampo = (expresion, input, campo) => {
       .querySelector(`#grupo__${campo} i`)
       .classList.remove("fa-check-circle");
     campos[campo] = false;
+    return false;
   }
 };
 

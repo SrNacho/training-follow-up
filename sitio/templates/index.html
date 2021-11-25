@@ -111,9 +111,9 @@
             <div class="modal">
               {% csrf_token %}
               <div class="wrapper">
-                <h3 class="ingresar_title">Ingrese una Fecha</h3>
+                <h3 id='ingresar_fecha'>Ingrese una Fecha</h3>
                 <label for="datepicker">
-                  <input type="text" name='fecha' id="datepicker" autocomplete="off" />
+                  <input type="text" name='fecha' placeholder="Presione Aquí" id="datepicker" autocomplete="off" readonly/>
                 </label>
                 <button class="btn">Ingrese</div>
 
@@ -125,17 +125,19 @@
       </div>
        <div class="navigation-container">
             <div class="navigation">
-                <a href="{% url 'performance' %}">
                 <div class="container-rendimiento">
+                <a href="{% url 'performance' %}">
                 <i class="fas fa-dumbbell"></i>
+                </a>
                 </div>
-                </a>
                 <div class="btn-home">
-                <a href="{% url 'index' %}">
                     <div class="btn-deg">
-                        <div class="container-home"><i class="fas fa-home"></i></div>
-                    </div>
+                        <div class="container-home">
+                <a href="{% url 'index' %}">
+                        <i class="fas fa-home"></i>
                 </a>
+                        </div>
+                    </div>
                 </div>
                 <div class="container-user">
 				<a href="{% url 'log-out' %}">

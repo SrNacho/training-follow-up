@@ -94,7 +94,7 @@ h1 {
 .buttonsContainerLogin {
   position: absolute;
   left: 50%;
-  transform: translate(-50%, 118px);
+  transform: translate(-50%, 143px);
   width: 80%;
 }
 
@@ -478,11 +478,11 @@ ul {
   padding: 5px;
 }
 
-.btn {
+.btn-codigo {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 150px;
+  width: 100%;
   background: linear-gradient(
     146deg,
     rgba(148, 158, 233, 1) 0%,
@@ -496,6 +496,26 @@ ul {
   text-transform: uppercase;
   font-weight: 600;
   margin: 10px 0;
+  cursor: pointer;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background: linear-gradient(
+    146deg,
+    rgba(148, 158, 233, 1) 0%,
+    rgba(98, 106, 210, 1) 100%
+  );
+  border: none;
+  outline: none;
+  height: 49px;
+  border-radius: 10px;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 600;
   cursor: pointer;
 }
 
@@ -569,28 +589,30 @@ ul {
   }
 }
 
+.changeModalWidth {
+  width: 80vw !important;
+}
+
 .wrapper {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  width: 50%;
+  width: 70vw;
   height: 40%;
 }
 .wrapper label {
+  width: 100%;
   font-size: 0.75rem;
   font-weight: 400;
   display: block;
   color: #b0bec5;
-
-  padding: 0.5rem 0.75rem;
-  border-radius: 0.5rem;
 }
 .wrapper input {
   display: block;
   border: none;
-  border-radius: 30px;
+  border-radius: 10px;
   border: 1px solid transparent;
   line-height: 1.5rem;
   padding-left: 5%;
@@ -598,7 +620,6 @@ ul {
   font-size: 1rem;
   color: #607d8b;
   width: 100%;
-  margin-top: 0.5rem;
 }
 input:focus {
   outline: none;
@@ -864,6 +885,11 @@ span {
 
 .ingresar_title {
   color: white;
+  margin: 10px 0;
+}
+
+#ingresar_fecha {
+  color: white;
 }
 
 #datepicker {
@@ -887,6 +913,7 @@ span {
   padding: 10px;
   background-color: transparent;
   width: 100%;
+  margin: 10px 0;
 }
 
 .formulario__input-error {
@@ -1036,14 +1063,16 @@ border-radius: 13px; */
   font-size: 30px;
 }
 
+.passwd {
+  margin: 0 !important;
+}
+
 .formulario__grupo-input {
   display: flex;
   flex-direction: row;
   align-items: flex-end;
   border: 1px solid rgba(255, 255, 255, 0.562);
-  padding-bottom: 0.5rem;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 10px;
 }
 
 .formulario__grupo-input i {
@@ -1053,7 +1082,7 @@ border-radius: 13px; */
 
 .formulario__mensaje {
   color: rgb(247, 196, 56);
-  margin-top: 7px;
+  margin: 10px 0;
 }
 
 .hourInput {
@@ -1072,4 +1101,18 @@ input[type="number"] {
 .titleBarra {
   width: 100%;
   text-align: left;
+}
+
+#changePasswordText {
+  color: blue;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: "Neometric Extra Light";
+  background-color: transparent;
+  border: none;
+}
+
+.changePassword {
+  margin-top: 10px;
 }
