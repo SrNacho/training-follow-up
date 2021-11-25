@@ -94,7 +94,7 @@ h1 {
 .buttonsContainerLogin {
   position: absolute;
   left: 50%;
-  transform: translate(-50%, 118px);
+  transform: translate(-50%, 143px);
   width: 80%;
 }
 
@@ -1072,4 +1072,16 @@ input[type="number"] {
 .titleBarra {
   width: 100%;
   text-align: left;
+}
+
+#changePasswordText {
+  color: blue;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: "Neometric Extra Light";
+}
+
+.changePassword {
+  margin-top: 10px;
 }
