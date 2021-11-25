@@ -27,7 +27,7 @@
                     </div>
                 </div>
             </div>
-             <form action="" method="POST" class="sign-up" id="formulario" onsubmit="return estaValidado()">
+             <form action="" method="POST" class="sign-up" name = "formulario" id="formulario" onsubmit="return estaValidado()">
             {% csrf_token %}
                 <div class="loginContainer">
                     <div class="itemLoginContainer">
@@ -37,11 +37,10 @@
                                 <i class="formulario__validacion-estado fas fa-times-circle"></i>
                             </div>
                             <div class="field formulario__grupo-input" id="grupo__password">
-                                <input type="password" class="emailInput" placeholder="Password" name='password'>
+                                <input type="password" class="emailInput" placeholder="Password" value="" name='password'>
                                 <i class="formulario__validacion-estado fas fa-times-circle"></i>
                             </div>
-                            
-                            <div class="field formulario__grupo-input">
+                            <div class="field formulario__grupo-input passwd">
                                 <div class="changePassword">
                                     <p id="changePasswordText">
                                     <button id="changePasswordText" type="button" name="sendVerificationCode">
@@ -79,7 +78,7 @@
                                 <div class="registerButtons">
                                     <div class="registerBtnText">
                                         <ion-icon name="arrow-back-outline"></ion-icon>
-                                        <h1>Registrarse </h1>
+                                        <h1>Registrarse</h1>
                                     </div>
                                 </div>
                                

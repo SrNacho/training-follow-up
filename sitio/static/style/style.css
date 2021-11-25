@@ -516,7 +516,6 @@ ul {
   color: #fff;
   text-transform: uppercase;
   font-weight: 600;
-  margin: 10px 0;
   cursor: pointer;
 }
 
@@ -621,7 +620,6 @@ ul {
   font-size: 1rem;
   color: #607d8b;
   width: 100%;
-  margin-top: 0.5rem;
 }
 input:focus {
   outline: none;
@@ -887,6 +885,11 @@ span {
 
 .ingresar_title {
   color: white;
+  margin: 10px 0;
+}
+
+#ingresar_fecha {
+  color: white;
 }
 
 #datepicker {
@@ -910,6 +913,7 @@ span {
   padding: 10px;
   background-color: transparent;
   width: 100%;
+  margin: 10px 0;
 }
 
 .formulario__input-error {
@@ -1059,14 +1063,16 @@ border-radius: 13px; */
   font-size: 30px;
 }
 
+.passwd {
+  margin: 0 !important;
+}
+
 .formulario__grupo-input {
   display: flex;
   flex-direction: row;
   align-items: flex-end;
   border: 1px solid rgba(255, 255, 255, 0.562);
-  padding-bottom: 0.5rem;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 10px;
 }
 
 .formulario__grupo-input i {
@@ -1076,7 +1082,7 @@ border-radius: 13px; */
 
 .formulario__mensaje {
   color: rgb(247, 196, 56);
-  margin-top: 7px;
+  margin: 10px 0;
 }
 
 .hourInput {
