@@ -478,11 +478,28 @@ ul {
   padding: 5px;
 }
 
+.btn-codigo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background: linear-gradient(146deg, rgba(148, 158, 233, 1) 0%, rgba(98, 106, 210, 1) 100% );
+  border: none;
+  outline: none;
+  height: 49px;
+  border-radius: 10px;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: 10px 0;
+  cursor: pointer;
+}
+
 .btn {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 150px;
+  width: 100%;
   background: linear-gradient(
     146deg,
     rgba(148, 158, 233, 1) 0%,
@@ -569,28 +586,30 @@ ul {
   }
 }
 
+.changeModalWidth{
+  width: 80vw !important;
+}
+
 .wrapper {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  width: 50%;
+  width: 70vw;
   height: 40%;
 }
 .wrapper label {
+  width: 100%;
   font-size: 0.75rem;
   font-weight: 400;
   display: block;
   color: #b0bec5;
-
-  padding: 0.5rem 0.75rem;
-  border-radius: 0.5rem;
 }
 .wrapper input {
   display: block;
   border: none;
-  border-radius: 30px;
+  border-radius: 10px;
   border: 1px solid transparent;
   line-height: 1.5rem;
   padding-left: 5%;
