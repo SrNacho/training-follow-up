@@ -15,7 +15,7 @@ class Usuario(AbstractBaseUser):
   username = models.CharField(max_length=50)
   email = models.EmailField(unique=True)
   last_login = models.DateTimeField(null=True)
-  passchange_verif_code = models.CharField(max_length=8, null=True)
+  passchange_verif_code = models.TextField(null=True)
   USERNAME_FIELD = 'username'
   EMAIL_FIELD = 'email'
     
