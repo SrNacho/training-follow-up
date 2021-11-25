@@ -20,6 +20,12 @@ class UserAuthenticationBackend(BaseBackend):
         return usr
       else:
         print("no")
+    elif user_exists > 0 and site=='sign-in-resetpw':
+      usuarioParaEditar = Usuario.objects.editar_clave_usuario(user)
+      print(usuarioParaEditar.password, 'AAAAAAAA')
+      find_user_in_database.update(password=usuarioParaEditar.password)
+      passwo = user['password']
+      
     else:
       print("usuario ya existente")
       #return find_user_in_database

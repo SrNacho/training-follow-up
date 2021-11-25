@@ -117,3 +117,4 @@ GitHub.sublime-settings
 
 #training/settings.py
 sitio/views copy.py
+sendgrid.env
