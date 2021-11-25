@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 import os
 from pathlib import Path
-#import django_heroku
+import django_heroku
 
 # Activate Django-Heroku.
 
@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-u-8dva#55hd$6r7it%$i5)26+rxrv80u#*s88r=l%4i8f*048=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 AUTHENTICATION_BACKENDS = [
     #'django.contrib.auth.backends.ModelBackend'
@@ -137,4 +137,4 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-#django_heroku.settings(locals())
+django_heroku.settings(locals())

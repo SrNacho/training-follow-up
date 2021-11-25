@@ -2,12 +2,13 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
-import dotenv
+#import dotenv
 
 def main():
     """Run administrative tasks."""
-    dotenv_path = os.path.join(os.path.dirname(__file__), 'sendgrid.env')
-    dotenv.read_dotenv(dotenv_path)
+    #dotenv_path = os.path.join(os.path.dirname(__file__), 'sendgrid.env')
+    #dotenv.read_dotenv(dotenv_path)
+    os.environ.get('SENDGRID_API_KEY')
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'training.settings')
     try:
         from django.core.management import execute_from_command_line

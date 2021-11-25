@@ -57,7 +57,7 @@
                                             <h3 class="ingresar_title">{% if request.resolver_match.route == 'sign-in/resetpassword' %}Ingrese el codigo de verificación{% else %}Ingrese el email{% endif %}</h3>
                                                 <input type="text" name='emailToSendCode' placeholder=""/>
                                                  <h3 class="ingresar_title">{% if request.resolver_match.route == 'sign-in/resetpassword' %}Nueva clave{% endif %}</h3>
-                                                {% if request.resolver_match.route == 'sign-in/resetpassword' %}<input type="text" name='newPassword' placeholder=""/>{% endif %}
+                                                {% if request.resolver_match.route == 'sign-in/resetpassword' %}<input type="password" name='newPassword' placeholder=""/>{% endif %}
                                             <button class="btn-codigo" type="submit" name="{% if request.resolver_match.route == 'sign-in/resetpassword' %}confirmResetPassword{% else %}sendVerificationCode{% endif %}">Resetear clave</button>
 
                                         </div>
