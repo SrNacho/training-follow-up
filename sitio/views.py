@@ -1,13 +1,30 @@
+from django.http.response import HttpResponse
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate,login, logout
 from django.contrib.auth.decorators import login_required
 from .forms import RegistroUsuarioForm, IngresoUsuarioForm
-from .models import HorasUsuario, CuotaUsuario
+from .models import HorasUsuario, CuotaUsuario, Usuario
 from django.core import serializers
 from datetime import date, datetime
+from .emailSender import sendEmail
+import shortuuid
+import os
 
+TOKEN = os.environ.get('SENDGRID_API_KEY')
 # Create your views here.
 Max_Hour_Progress_Bar = 5 # x = 100% of the progress bar
+
+class Email:
+  def __init__(self):
+      self.email=""
+  
+  def getEmail(self):
+    return self.email
+
+  def setEmail(self,x): 
+    self.email=x
+
+emailState = Email()
 
 @login_required(login_url='sign-in')
 def index(request):
@@ -70,16 +87,42 @@ def sign_up(request):
 
 def sign_in(request):
   if not request.user.is_authenticated:
+    
     if request.method == 'GET':
       form = IngresoUsuarioForm()
       ctx={
         'form':form
       }
       return render(request,'sign-in.html',ctx)
+    elif request.method=="POST" and 'confirmResetPassword' in request.POST:
+        print("CODIGO CONFIRMADO")
+        emailToReset = emailState.getEmail()
+        newPassword = request.POST['newPassword']
+        userCodeInput = request.POST['emailToSendCode']
+        usuario = Usuario.objects.filter(email=emailToReset)
+        data={}
+        try:
+          data = serializers.serialize( "python", usuario)[0]['fields']
+        except:
+          data['passchange_verif_code']=None
+        print(data, "aaaaaaaaaaaaaaaaa")
+        if userCodeInput == data['passchange_verif_code']:
+          mockUser = {'usuario':data['username'],'email':emailToReset,'password':newPassword}
+          authenticate(request,user=mockUser,site='sign-in-resetpw')
+          usuario.update(passchange_verif_code=None)
+          emailState.setEmail("")
+          return redirect('sign-in')
+        else:
+          return HttpResponse("CODIGO MAL")
     elif request.method=="POST" and 'sendVerificationCode' in request.POST:
-        
-        print("asdasdas")
-        return redirect('sign-in')
+        print(request.POST['emailToSendCode'])
+        emailToReset = request.POST['emailToSendCode']
+        emailState.setEmail(emailToReset)
+        verificationCode = shortuuid.uuid(pad_length=8)
+        sendEmail(emailToReset, verificationCode, TOKEN)
+        usuario = Usuario.objects.filter(email=emailToReset)
+        usuario.update(passchange_verif_code=verificationCode) #tengo que setearlo a null en el manager.py, cuando actualizo su clave
+        return redirect('sign-in-resetpw')
     elif request.method=="POST" and 'loginButton' in request.POST:
       print(request.POST)
       form = IngresoUsuarioForm(request.POST)
