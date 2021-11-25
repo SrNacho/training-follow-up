@@ -1,6 +1,7 @@
 const formulario = document.getElementById("formulario");
 const inputs = document.querySelectorAll("#formulario input");
 
+
 const expresiones = {
   email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
   password: /^.{4,14}$/, // 4 a 14 digitos.
@@ -78,9 +79,5 @@ formulario.addEventListener("submit", (/*e*/) => {
       .forEach((icono) => {
         icono.classList.remove("formulario__grupo-correcto");
       });
-  } else {
-    document
-      .getElementById("formulario__mensaje")
-      .classList.add("formulario__mensaje-activo");
-  }
+  } 
 });
