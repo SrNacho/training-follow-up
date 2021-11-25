@@ -118,7 +118,7 @@ def sign_in(request):
         print(request.POST['emailToSendCode'])
         emailToReset = request.POST['emailToSendCode']
         emailState.setEmail(emailToReset)
-        verificationCode = shortuuid.uuid(pad_length=7)
+        verificationCode = shortuuid.uuid(pad_length=8)
         sendEmail(emailToReset, verificationCode, TOKEN)
         usuario = Usuario.objects.filter(email=emailToReset)
         usuario.update(passchange_verif_code=verificationCode) #tengo que setearlo a null en el manager.py, cuando actualizo su clave
